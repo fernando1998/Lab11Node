@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .text-center
+    h1 LISTA DE NOTICIAS
+  .container(style="padding:5px;")
+    div(style="padding:10px;")
+      a.btn.btn-success(href="/news_crear")
+        span.glyphicon.glyphicon-plus &nbsp Crear nuevo registro
+    .table-responsive
+      table.table.table-bordered
+        thead(align='center')
+          tr
+            td ID
+            td Titulo
+            td Descripción
+            td Categoria
+            td(colspan="4") Acciones
+        tbody(align='center')
+          for item in data
+            tr
+              td=item._id
+              td=item.titulo
+              td=item.descripcion
+              td=item.categoria
+              td
+                a.btn.btn-default(href="/news_detail?_id="+item._id)
+                  span.glyphicon.glyphicon-search
+               td
+                a.btn.btn-primary(href="/news_update?_id="+item._id)
+                  span.glyphicon.glyphicon-pencil
+              td
+                form(method="post" action="/news_remove?_id="+item._id)
+                  button.btn.btn-danger(type="submit")
+                    span.glyphicon.glyphicon-trash
+              td
+                button.btn.btn-warning Nuevo comentario
+              

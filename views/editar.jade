@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .container
+        .main.container
+            .row
+                .text-center
+                    h1.display-4.m-b-2 Actualizar Noticia
+                form(action="/news_update",method="post")
+                    input(type="hidden", value=data._id,name="_id")
+                    .form-group
+                        label(for="titulo") Titulo:
+                        input#titulo.form-control(type="text",name="titulo", value=data.titulo)
+                    .form-group
+                        label(for="descripcion") Descripción:
+                        textarea#descripcion.form-control(name="descripcion")=data.descripcion
+                    .form-group
+                        label(for="categoria") Categoria:
+                        input#categoria.form-control(type="text",name="categoria",value=data.categoria)
+                    .form-group
+                        label(for="fecha") Fecha:
+                        input#fecha.form-control(type="date",name="fecha",value=data.fecha)
+                    .text-center
+                        button.btn.btn-success(type="submit", style="margin:5px;") Guardar
+                        a.btn.btn-danger(href="/news", style="margin:5px;") Cancelar
