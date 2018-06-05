@@ -30,6 +30,10 @@ app.get('/news_detail',noticia.show);
 app.get('/news_update',noticia.edit);
 app.post('/news_update',noticia.update);
 
+app.get('/comment_create',noticia.viewComment);
+
+app.post('/comment_create',noticia.createComment);
+
 app.post('/news_remove',noticia.delete);
 
  

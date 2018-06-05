@@ -55,6 +55,26 @@ module.exports = {
         var nuevo = new noticia_model(item).save();
         res.redirect("/news");
     },
+    viewComment:function(req,res){
+        noticia_model.findOne({_id: req.query._id},function(err,items){
+            if(!err){
+                res.render('crearComentario',{data: items});
+            }else{
+                return console.log(err);
+            }
+        }); 
+    },
+    createComment: function(req,res){
+        noticia_model.findOne({_id: req.body._id},function(err,noticia){
+            noticia.comentarios = [
+                {   autor: req.body.autor, 
+                    mensaje: req.body.mensaje, 
+                    fecha: req.body.fecha 
+                }]
+            noticia.save();
+            res.redirect('/news');
+        });
+    },
     edit: function(req,res){
         noticia_model.findOne({_id: req.query._id},function(err,items){
             if(!err){
