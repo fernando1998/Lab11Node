@@ -66,11 +66,12 @@ module.exports = {
     },
     createComment: function(req,res){
         noticia_model.findOne({_id: req.body._id},function(err,noticia){
-            noticia.comentarios = [
+            comentario = 
                 {   autor: req.body.autor, 
                     mensaje: req.body.mensaje, 
                     fecha: req.body.fecha 
-                }]
+                }
+            noticia.comentarios.push(comentario);    
             noticia.save();
             res.redirect('/news');
         });
